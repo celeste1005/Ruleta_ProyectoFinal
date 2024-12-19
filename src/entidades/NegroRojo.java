@@ -4,63 +4,47 @@
  */
 package entidades;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  *
  * @author gta_2
  */
 public class NegroRojo {
-    private static final Set<Integer> NUMEROS_ROJOS = new HashSet<>();
-    private static final Set<Integer> NUMEROS_NEGROS = new HashSet<>();
-    private String colorApostado; //"rojo" o "negro, o "ROJO" o "NEGRO"
-    private int pagoPorAcierto = 1;
 
-    static {
-        int[] numerosRojos = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};
-        int[] numerosNegros = {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35};
+    private static final int[] ROJOS = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36};
+    private static final int[] NEGROS = {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35};
 
-        for (int num : numerosRojos) {
-            NUMEROS_ROJOS.add(num);
+    public static String obtenerColor(int numero) {
+        if (numero == 0) {
+            return "Verde";
         }
-        for (int num : numerosNegros) {
-            NUMEROS_NEGROS.add(num);
+        for (int rojo : ROJOS) {
+            if (rojo == numero) {
+                return "Rojo";
+            }
         }
-    }
-
-    public NegroRojo(String colorApostado) {
-        if (!colorApostado.equalsIgnoreCase("rojo") && !colorApostado.equalsIgnoreCase("negro")) {
-            throw new IllegalArgumentException("El color apostado debe ser 'rojo' o 'negro'.");
+        for (int negro : NEGROS) {
+            if (negro == numero) {
+                return "Negro";
+            }
         }
-        this.colorApostado = colorApostado.toLowerCase();
+        return "Desconocido";
     }
 
-    public String getColorApostado() {
-        return colorApostado;
-    }
-
-    public void setColorApostado(String colorApostado) {
-        if (!colorApostado.equalsIgnoreCase("rojo") && !colorApostado.equalsIgnoreCase("negro")) {
-            throw new IllegalArgumentException("El color apostado debe ser 'rojo' o 'negro'.");
+    public static boolean esRojo(int numero) {
+        for (int rojo : ROJOS) {
+            if (rojo == numero) {
+                return true;
+            }
         }
-        this.colorApostado = colorApostado.toLowerCase();
+        return false;
     }
 
-    public boolean verificarApuesta(int numeroGanador) {
-        if (colorApostado.equals("rojo")) {
-            return NUMEROS_ROJOS.contains(numeroGanador);
-        } else {
-            return NUMEROS_NEGROS.contains(numeroGanador);
+    public static boolean esNegro(int numero) {
+        for (int negro : NEGROS) {
+            if (negro == numero) {
+                return true;
+            }
         }
-    }
-
-    public int calcularGanancia(int montoApostado) {
-        return montoApostado * pagoPorAcierto;
-    }
-
-    @Override
-    public String toString() {
-        return "Apuesta al color: " + colorApostado;
+        return false;
     }
 }

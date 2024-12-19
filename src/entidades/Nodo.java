@@ -8,8 +8,8 @@ package entidades;
  *
  * @author gta_2
  */
-public class Nodo {
-    private int info;
+public class Nodo<T> {
+    private T info;
     private Nodo sgte;
     private Nodo ant;
     
@@ -18,23 +18,23 @@ public class Nodo {
         ant = null;
     }
     
-    public Nodo(int x){
+    public Nodo(T x){
         info = x;
         sgte = null;
         ant = null;
     }
     
-    public Nodo(int x, Nodo sig, Nodo ante){
+    public Nodo(T x, Nodo sig, Nodo ante){
         info = x;
         sgte = sig;
         ant = ante;
     }
 
-    public int getInfo() {
+    public T getInfo() {
         return info;
     }
 
-    public void setInfo(int info) {
+    public void setInfo(T info) {
         this.info = info;
     }
 

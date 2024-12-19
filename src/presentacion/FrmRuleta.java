@@ -16,25 +16,26 @@ import javax.swing.JInternalFrame;
  * @author gta_2
  */
 public class FrmRuleta extends javax.swing.JFrame {
-    
+
     private JInternalFrame currentInternalFrame = null;
     Color defaultColor, clickedColor;
+
     /**
      * Creates new form FrmRuleta
      */
     public FrmRuleta() {
         initComponents();
-       this.setLocationRelativeTo(null);
-        
-       /* IFrmJuegoRuleta rl = new IFrmJuegoRuleta();
+        this.setLocationRelativeTo(null);
+
+        /* IFrmJuegoRuleta rl = new IFrmJuegoRuleta();
          rl.setSize(1288, 817);
          rl.setLocation(0,0);
          panelContenedor.removeAll();
          panelContenedor.add(rl, BorderLayout.CENTER);
          panelContenedor.revalidate();
          panelContenedor.repaint();*/
-        defaultColor = new Color(20,19,19);
-        clickedColor = new Color(200,21,21);
+        defaultColor = new Color(20, 19, 19);
+        clickedColor = new Color(200, 21, 21);
         mnuTab1.setBackground(defaultColor);
         mnuInstrucciones.setBackground(defaultColor);
     }
@@ -51,7 +52,7 @@ public class FrmRuleta extends javax.swing.JFrame {
         panel = new javax.swing.JPanel();
         mnuPanel = new javax.swing.JPanel();
         mnuTab1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblJugar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         mnuInstrucciones = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -61,7 +62,6 @@ public class FrmRuleta extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1242, 917));
 
         panel.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -80,26 +80,35 @@ public class FrmRuleta extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(51, 51, 51));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(188, 75, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("JUGAR");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblJugar.setBackground(new java.awt.Color(20, 19, 19));
+        lblJugar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblJugar.setForeground(new java.awt.Color(188, 75, 0));
+        lblJugar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJugar.setText("JUGAR");
+        lblJugar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblJugar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblJugar.setOpaque(true);
+        lblJugar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblJugarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblJugarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblJugarMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout mnuTab1Layout = new javax.swing.GroupLayout(mnuTab1);
         mnuTab1.setLayout(mnuTab1Layout);
         mnuTab1Layout.setHorizontalGroup(
             mnuTab1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mnuTab1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 16, Short.MAX_VALUE))
+            .addComponent(lblJugar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         mnuTab1Layout.setVerticalGroup(
             mnuTab1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mnuTab1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+            .addComponent(lblJugar, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
         );
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/LogoN100.png"))); // NOI18N
@@ -143,7 +152,7 @@ public class FrmRuleta extends javax.swing.JFrame {
             .addGroup(mnuPanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         mnuPanelLayout.setVerticalGroup(
             mnuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,15 +247,15 @@ public class FrmRuleta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuTab1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuTab1MouseClicked
-       /* IFrmJuegoRuleta rl = new IFrmJuegoRuleta();
+        /* IFrmJuegoRuleta rl = new IFrmJuegoRuleta();
          rl.setSize(1288, 817);
          rl.setLocation(0,0);
          panelContenedor.removeAll();
          panelContenedor.add(rl, BorderLayout.CENTER);
          panelContenedor.revalidate();
          panelContenedor.repaint();*/
-     IFrmJuegoRuleta tab = new IFrmJuegoRuleta();
-     centrarInternalFrame1(tab);
+        IFrmJuegoRuleta tab = new IFrmJuegoRuleta();
+        centrarInternalFrame1(tab);
     }//GEN-LAST:event_mnuTab1MouseClicked
 
     private void mnuTab1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuTab1MousePressed
@@ -261,6 +270,21 @@ public class FrmRuleta extends javax.swing.JFrame {
     private void mnuInstruccionesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuInstruccionesMousePressed
         mnuInstrucciones.setBackground(defaultColor);
     }//GEN-LAST:event_mnuInstruccionesMousePressed
+
+    private void lblJugarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseEntered
+        lblJugar.setBackground(new Color(188, 75, 0));
+        lblJugar.setForeground(Color.black);
+    }//GEN-LAST:event_lblJugarMouseEntered
+
+    private void lblJugarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseClicked
+        IFrmJuegoRuleta tab = new IFrmJuegoRuleta();
+        centrarInternalFrame1(tab);
+    }//GEN-LAST:event_lblJugarMouseClicked
+
+    private void lblJugarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseExited
+        lblJugar.setBackground(new Color(20,19,19));
+        lblJugar.setForeground(new Color(188,75,0));
+    }//GEN-LAST:event_lblJugarMouseExited
 
     /**
      * @param args the command line arguments
@@ -279,9 +303,9 @@ public class FrmRuleta extends javax.swing.JFrame {
         int y = panelRuleta.getHeight() / 2 - interna.getHeight() / 2;
 
         interna.setLocation(x, y);
-        interna.show();      
+        interna.show();
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -315,12 +339,12 @@ public class FrmRuleta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblJugar;
     private javax.swing.JPanel mnuInstrucciones;
     private javax.swing.JPanel mnuPanel;
     private javax.swing.JPanel mnuTab1;

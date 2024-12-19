@@ -8,7 +8,7 @@ package entidades;
  *
  * @author gta_2
  */
-public class ListaEnlazadaDeColores {
+public class ListaEnlazadaDeColores<T> {
     private Nodo primero;
     private Nodo ultimo;
     
@@ -40,7 +40,7 @@ public class ListaEnlazadaDeColores {
             return false;
     }
     
-    public void agregarAlFinal(int v){
+    public void agregarAlFinal(T v){
         Nodo nv = new Nodo(v);
         if(primero==null){
             nv.setSgte(null);
@@ -56,7 +56,7 @@ public class ListaEnlazadaDeColores {
         }
     }
     
-    public void agregarAlInicio(int v){
+    public void agregarAlInicio(T v){
         Nodo nv = new Nodo(v);
         if(primero==null){
             nv.setSgte(null);
@@ -72,10 +72,10 @@ public class ListaEnlazadaDeColores {
         }
     }
 
-    public Nodo buscarColor (int numero){
+    public Nodo buscarColor (T numero){
         Nodo p=primero;
         while(p!=null){
-            if(p.getInfo()==numero)
+            if(p.getInfo()== numero)
                 return p;
             p=p.getSgte();
         }

@@ -4,9 +4,13 @@
  */
 package presentacion;
 
+import entidades.Apuesta;
+import entidades.ListaCircularAleatoria;
+import entidades.NegroRojo;
 import java.awt.event.KeyEvent;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,12 +18,18 @@ import javax.swing.JOptionPane;
  */
 public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
 
+    DefaultTableModel modeloRojos = new DefaultTableModel();
+    DefaultTableModel modeloNegros = new DefaultTableModel();
+
+    ListaCircularAleatoria<Apuesta> listaRojos = new ListaCircularAleatoria();
+    ListaCircularAleatoria<Apuesta> listaNegros = new ListaCircularAleatoria();
+
     /**
      * Creates new form IFrmJuegoRuleta
      */
     public IFrmJuegoRuleta() {
         initComponents();
-        
+
     }
 
     /**
@@ -55,11 +65,11 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         btnApostar = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableRojos = new javax.swing.JTable();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableNegros = new javax.swing.JTable();
         rbtnPar = new javax.swing.JRadioButton();
         rbtnImpar = new javax.swing.JRadioButton();
         rbtn1Docena = new javax.swing.JRadioButton();
@@ -72,7 +82,7 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         rbtnFila1 = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnJugar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
@@ -207,18 +217,8 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Número", "Apuesta"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        tableRojos.setModel(modeloRojos);
+        jScrollPane1.setViewportView(tableRojos);
 
         jLabel17.setText("NEGROS");
 
@@ -226,18 +226,8 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("ROJOS");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Número", "Apuesta"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        tableNegros.setModel(modeloNegros);
+        jScrollPane2.setViewportView(tableNegros);
 
         rbtnPar.setBackground(new java.awt.Color(0, 0, 0));
         rbtnPar.setForeground(new java.awt.Color(255, 255, 255));
@@ -275,10 +265,16 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
 
         jButton3.setText("Ordenar por paridad");
 
-        jButton4.setText("Jugar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnJugar.setText("Jugar");
+        btnJugar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnJugar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnJugarMouseClicked(evt);
+            }
+        });
+        btnJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnJugarActionPerformed(evt);
             }
         });
 
@@ -428,13 +424,10 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(156, 156, 156))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addGap(292, 292, 292)
-                                .addComponent(jLabel17))
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
                                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -446,7 +439,9 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                                         .addComponent(jLabel18)
-                                        .addGap(242, 242, 242)))
+                                        .addGap(136, 136, 136)
+                                        .addComponent(jLabel17)
+                                        .addGap(60, 60, 60)))
                                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton2)
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -511,7 +506,9 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel18)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel17))
                                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -528,7 +525,7 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(panelTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(62, 62, 62)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel19)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -538,9 +535,7 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                                .addGap(110, 110, 110)
-                                                .addComponent(jLabel17)
-                                                .addGap(64, 64, 64)
+                                                .addGap(190, 190, 190)
                                                 .addComponent(jLabel11)
                                                 .addGap(139, 139, 139))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
@@ -589,84 +584,110 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        txtApuesta.setText(" $ 1");
+        txtApuesta.setText("1");
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        txtApuesta.setText(" $ 5");
+        txtApuesta.setText("5");
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
-        txtApuesta.setText(" $10");
+        txtApuesta.setText("10");
     }//GEN-LAST:event_btn10ActionPerformed
 
     private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
-        txtApuesta.setText(" $ 20");
+        txtApuesta.setText("20");
     }//GEN-LAST:event_btn20ActionPerformed
 
     private void btn50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn50ActionPerformed
-        txtApuesta.setText(" $ 50");
+        txtApuesta.setText("50");
     }//GEN-LAST:event_btn50ActionPerformed
 
     private void btn100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn100ActionPerformed
-        txtApuesta.setText(" $ 100");
+        txtApuesta.setText("100");
     }//GEN-LAST:event_btn100ActionPerformed
 
     private void btnApostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApostarActionPerformed
         try {
             int numero = Integer.parseInt(txtApuesta.getText());
             if (numero < 0 || numero > 36) {
-                txtApuesta.setBackground(java.awt.Color.PINK); 
+                txtApuesta.setBackground(java.awt.Color.PINK);
                 txtApuesta.setToolTipText("Número inválido. Ingresa un valor entre 0 y 36.");
             } else {
-                txtApuesta.setBackground(java.awt.Color.WHITE); 
+                txtApuesta.setBackground(java.awt.Color.WHITE);
                 txtApuesta.setToolTipText(null);
             }
         } catch (NumberFormatException ex) {
             txtApuesta.setBackground(java.awt.Color.PINK);
             txtApuesta.setToolTipText("Por favor, ingresa un número válido.");
         }
-        
+
     }//GEN-LAST:event_btnApostarActionPerformed
 
     private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
         char c = evt.getKeyChar();
-        if(((c<'0') || (c>'9')) && (c != KeyEvent.VK_BACK_SPACE) )
-           evt.consume();
+        if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE))
+            evt.consume();
     }//GEN-LAST:event_txtNumeroKeyTyped
 
     private void txtMontoInicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoInicialKeyTyped
         char c = evt.getKeyChar();
-        if(((c<'0') || (c>'9')) && (c != KeyEvent.VK_BACK_SPACE) && (c!= '.' || txtMontoInicial.getText().contains(".")))
-           evt.consume();
+        if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != '.' || txtMontoInicial.getText().contains(".")))
+            evt.consume();
     }//GEN-LAST:event_txtMontoInicialKeyTyped
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
         IFrmTemporizador tab = new IFrmTemporizador();
         centrarInternalFrameTemp(tab);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnJugarActionPerformed
+
+    private void btnJugarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnJugarMouseClicked
+        int numero = (int) (Math.random() * 37);
+
+        String color = NegroRojo.obtenerColor(numero);
+
+        JOptionPane.showMessageDialog(this, "Número: " + numero + "\nColor: " + color);
+
+        double apuesta = 0.0;
+        try {
+            apuesta = Double.parseDouble(txtApuesta.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Apuesta no válida. Se registrará como 0.");
+        }
+
+        Apuesta nuevaApuesta = new Apuesta(numero, apuesta);
+
+        if (color.equals("Rojo")) {
+            listaRojos.insertar(nuevaApuesta);
+            listaRojos.mostrar(modeloRojos);
+        } else if (color.equals("Negro")) {
+            listaNegros.insertar(nuevaApuesta);
+            listaNegros.mostrar(modeloNegros);
+        }
+    }//GEN-LAST:event_btnJugarMouseClicked
 
     private void centrarInternalFrame(JInternalFrame interna) {
-        int x = panelPrincipal.getWidth()/2 - interna.getWidth()/2;
-        int y = panelPrincipal.getHeight()/2 - interna.getHeight()/2;
-        if(interna.isShowing())
+        int x = panelPrincipal.getWidth() / 2 - interna.getWidth() / 2;
+        int y = panelPrincipal.getHeight() / 2 - interna.getHeight() / 2;
+        if (interna.isShowing()) {
             interna.setLocation(x, y);
-        else {
+        } else {
             panelPrincipal.add(interna);
             interna.setLocation(x, y);
             interna.show();
-        }        
+        }
     }
+
     private void centrarInternalFrameTemp(JInternalFrame interna) {
-        int x = panelTemp.getWidth()/2 - interna.getWidth()/2;
-        int y = panelTemp.getHeight()/2 - interna.getHeight()/2;
-        if(interna.isShowing())
+        int x = panelTemp.getWidth() / 2 - interna.getWidth() / 2;
+        int y = panelTemp.getHeight() / 2 - interna.getHeight() / 2;
+        if (interna.isShowing()) {
             interna.setLocation(x, y);
-        else {
+        } else {
             panelTemp.add(interna);
             interna.setLocation(x, y);
             interna.show();
-        }        
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn1;
@@ -677,11 +698,11 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn50;
     private javax.swing.JButton btnApostar;
     private javax.swing.ButtonGroup btnGrupo;
+    private javax.swing.JButton btnJugar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel17;
@@ -701,8 +722,6 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelTemp;
@@ -716,6 +735,8 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rbtnNegros;
     private javax.swing.JRadioButton rbtnPar;
     private javax.swing.JRadioButton rbtnRojos;
+    private javax.swing.JTable tableNegros;
+    private javax.swing.JTable tableRojos;
     private javax.swing.JTextField txtApuesta;
     private javax.swing.JTextField txtApuestaJugada;
     private javax.swing.JTextField txtGanancia;

@@ -48,7 +48,8 @@ public class IFrmTemporizador extends javax.swing.JInternalFrame {
         if (segundos <= 0 && milisegundos <= 0) {
             mTimer.stop(); 
             JOptionPane.showMessageDialog(this, "¡El tiempo se ha agotado!", "Hagan Juego", JOptionPane.INFORMATION_MESSAGE);
-            btnIniciar.setEnabled(true); 
+            btnIniciar.setEnabled(true);
+            
         }
         
     }
