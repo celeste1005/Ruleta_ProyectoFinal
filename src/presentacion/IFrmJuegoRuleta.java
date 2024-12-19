@@ -220,6 +220,7 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         tableRojos.setModel(modeloRojos);
         jScrollPane1.setViewportView(tableRojos);
 
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("NEGROS");
 
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
@@ -253,13 +254,13 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         rbtnNegros.setText("Negros");
 
         rbtnFila3.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnFila3.setText("Fila 3-36");
+        rbtnFila3.setText("Columna 3-36");
 
         rbtnFila2.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnFila2.setText("Fila 2-35");
+        rbtnFila2.setText("Columna 2-35");
 
         rbtnFila1.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnFila1.setText("Fila 1-34");
+        rbtnFila1.setText("Columna 1-34");
 
         jButton2.setText("Ordenar Ascendente");
 
