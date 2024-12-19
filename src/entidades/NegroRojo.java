@@ -9,15 +9,11 @@ public class NegroRojo {
         if (numero == 0) {
             return "Verde";
         }
-        for (int rojo : ROJOS) {
-            if (rojo == numero) {
-                return "Rojo";
-            }
+        if (esRojoSecuencial(numero)) {
+            return "Rojo";
         }
-        for (int negro : NEGROS) {
-            if (negro == numero) {
-                return "Negro";
-            }
+        if (esNegroBinario(numero)) {
+            return "Negro";
         }
         return "Desconocido";
     }
@@ -35,15 +31,15 @@ public class NegroRojo {
         int izq, der, central;
         izq = 0;
         der = NEGROS.length - 1;
-        
-        while(izq <= der){
-            central = (izq + der)/2;
+
+        while (izq <= der) {
+            central = (izq + der) / 2;
             if (numero == NEGROS[central]) {
                 return true;
-            }else{
+            } else {
                 if (numero > NEGROS[central]) {
                     izq = central + 1;
-                }else{
+                } else {
                     der = central - 1;
                 }
             }
