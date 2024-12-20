@@ -1,16 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entidades;
 
-/**
- *
- * @author gta_2
- */
 public class Pleno {
-    private int numeroApostado; // Número seleccionado para realizar la apuesta
-    private int pagoPorAcierto = 35; // Es 35 veces el valor apostado.
+    private int numeroApostado;
+    private int pagoPorAcierto = 35;
 
     public Pleno(int numeroApostado) {
         if (numeroApostado < 0 || numeroApostado > 36) {

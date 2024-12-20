@@ -10,9 +10,9 @@ package entidades;
  */
 public class Apuesta {
     private int numero;
-    private double apuesta;
+    private int apuesta;
 
-    public Apuesta(int numero, double apuesta) {
+    public Apuesta(int numero, int apuesta) {
         this.numero = numero;
         this.apuesta = apuesta;
     }
@@ -29,7 +29,7 @@ public class Apuesta {
         return apuesta;
     }
 
-    public void setApuesta(double apuesta) {
+    public void setApuesta(int apuesta) {
         this.apuesta = apuesta;
     }
 }

@@ -43,6 +43,7 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         btnGrupo = new javax.swing.ButtonGroup();
+        btnGroupRbtn = new javax.swing.ButtonGroup();
         panelPrincipal = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -77,11 +78,11 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         rbtn3Docena = new javax.swing.JRadioButton();
         rbtnRojos = new javax.swing.JRadioButton();
         rbtnNegros = new javax.swing.JRadioButton();
-        rbtnFila3 = new javax.swing.JRadioButton();
-        rbtnFila2 = new javax.swing.JRadioButton();
-        rbtnFila1 = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        rbtnColumna3 = new javax.swing.JRadioButton();
+        rbtnColumna2 = new javax.swing.JRadioButton();
+        rbtnColumna1 = new javax.swing.JRadioButton();
+        btnOrdenAscendente = new javax.swing.JButton();
+        btnOrdenParidad = new javax.swing.JButton();
         btnJugar = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -94,6 +95,7 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         btn100 = new javax.swing.JButton();
         btn1 = new javax.swing.JButton();
         panelTemp = new javax.swing.JPanel();
+        rbtnPleno = new javax.swing.JRadioButton();
 
         setBorder(null);
 
@@ -199,6 +201,7 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Número");
 
+        txtNumero.setEditable(false);
         txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroKeyTyped(evt);
@@ -231,40 +234,55 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(tableNegros);
 
         rbtnPar.setBackground(new java.awt.Color(0, 0, 0));
+        btnGroupRbtn.add(rbtnPar);
         rbtnPar.setForeground(new java.awt.Color(255, 255, 255));
         rbtnPar.setText("Par");
         rbtnPar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        btnGroupRbtn.add(rbtnImpar);
         rbtnImpar.setForeground(new java.awt.Color(255, 255, 255));
         rbtnImpar.setText("Impar");
 
+        btnGroupRbtn.add(rbtn1Docena);
         rbtn1Docena.setForeground(new java.awt.Color(255, 255, 255));
         rbtn1Docena.setText("1ra Docena");
 
+        btnGroupRbtn.add(rbtn2Docena);
         rbtn2Docena.setForeground(new java.awt.Color(255, 255, 255));
         rbtn2Docena.setText("2da Docena");
 
+        btnGroupRbtn.add(rbtn3Docena);
         rbtn3Docena.setForeground(new java.awt.Color(255, 255, 255));
         rbtn3Docena.setText("3ra Docena");
 
+        btnGroupRbtn.add(rbtnRojos);
         rbtnRojos.setForeground(new java.awt.Color(255, 255, 255));
         rbtnRojos.setText("Rojos");
 
+        btnGroupRbtn.add(rbtnNegros);
         rbtnNegros.setForeground(new java.awt.Color(255, 255, 255));
         rbtnNegros.setText("Negros");
 
-        rbtnFila3.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnFila3.setText("Columna 3-36");
+        btnGroupRbtn.add(rbtnColumna3);
+        rbtnColumna3.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnColumna3.setText("Columna 3-36");
 
-        rbtnFila2.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnFila2.setText("Columna 2-35");
+        btnGroupRbtn.add(rbtnColumna2);
+        rbtnColumna2.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnColumna2.setText("Columna 2-35");
 
-        rbtnFila1.setForeground(new java.awt.Color(255, 255, 255));
-        rbtnFila1.setText("Columna 1-34");
+        btnGroupRbtn.add(rbtnColumna1);
+        rbtnColumna1.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnColumna1.setText("Columna 1-34");
 
-        jButton2.setText("Ordenar Ascendente");
+        btnOrdenAscendente.setText("Ordenar Ascendente");
 
-        jButton3.setText("Ordenar por paridad");
+        btnOrdenParidad.setText("Ordenar por paridad");
+        btnOrdenParidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenParidadActionPerformed(evt);
+            }
+        });
 
         btnJugar.setText("Jugar");
         btnJugar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -403,70 +421,70 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
             .addGap(0, 133, Short.MAX_VALUE)
         );
 
+        btnGroupRbtn.add(rbtnPleno);
+        rbtnPleno.setForeground(new java.awt.Color(255, 255, 255));
+        rbtnPleno.setText("Pleno");
+
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(111, 111, 111)
+                .addGap(19, 19, 19)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(43, 43, 43)
+                        .addGap(92, 92, 92)
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(txtApuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(btnApostar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel19))
+                                .addComponent(jLabel8)
+                                .addGap(96, 96, 96)
+                                .addComponent(jLabel9))
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(156, 156, 156))
-                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(txtApuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17))
                                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                        .addGap(72, 72, 72)
+                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(rbtnImpar)
+                                                .addComponent(rbtnPar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(rbtnPleno)))
+                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                        .addGap(73, 73, 73)
+                                        .addComponent(rbtn1Docena))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addGap(136, 136, 136)
-                                        .addComponent(jLabel17)
-                                        .addGap(60, 60, 60)))
+                                        .addComponent(btnApostar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(33, 33, 33))
+                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                        .addGap(71, 71, 71)
+                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rbtn3Docena)
+                                            .addComponent(rbtn2Docena))))))
+                        .addGap(50, 50, 50)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(rbtnNegros)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(rbtnColumna3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
                                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                        .addComponent(rbtnPar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(158, 158, 158)
-                                        .addComponent(rbtnRojos))
-                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                        .addComponent(rbtnImpar)
-                                        .addGap(160, 160, 160)
-                                        .addComponent(rbtnNegros))
-                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(rbtn1Docena)
-                                            .addComponent(rbtn2Docena)
-                                            .addComponent(rbtn3Docena))
-                                        .addGap(129, 129, 129)
-                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(rbtnFila1)
-                                            .addComponent(rbtnFila2)
-                                            .addComponent(rbtnFila3))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(140, 140, 140))
+                                    .addComponent(rbtnColumna2)
+                                    .addComponent(rbtnColumna1)
+                                    .addComponent(rbtnRojos))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
                         .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
@@ -480,9 +498,29 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
                             .addGroup(panelPrincipalLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(panelTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 83, Short.MAX_VALUE))))
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(panelTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                        .addGap(66, 66, 66)
+                                        .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(484, 484, 484)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnOrdenAscendente)
+                                    .addComponent(btnOrdenParidad, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(242, 242, 242))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel19)
+                        .addGap(140, 140, 140))))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,81 +529,73 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPrincipalLayout.createSequentialGroup()
-                                .addGap(328, 328, 328)
-                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel8))
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGap(172, 172, 172)
+                                .addComponent(jLabel11))
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPrincipalLayout.createSequentialGroup()
+                                        .addGap(73, 73, 73)
+                                        .addComponent(panelTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtApuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnApostar))
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(rbtnPleno)
+                                        .addComponent(rbtnNegros))
+                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel9))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtApuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnApostar))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel19)
+                                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel18)
-                                    .addComponent(jLabel17))
-                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                        .addGap(137, 137, 137)
-                                        .addComponent(jButton3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton2))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPrincipalLayout.createSequentialGroup()
+                                    .addComponent(rbtnPar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rbtnRojos)
+                                    .addComponent(jLabel17))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rbtnImpar)
+                                    .addComponent(rbtnColumna1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rbtn1Docena)
+                                    .addComponent(rbtnColumna2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rbtn2Docena)
+                                    .addComponent(rbtnColumna3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtn3Docena)
+                                .addGap(50, 50, 50)
+                                .addComponent(btnOrdenParidad)
                                 .addGap(18, 18, 18)
-                                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(panelTemp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(62, 62, 62)
-                                        .addComponent(btnJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel19)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(7, 7, 7))
-                                    .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                                                .addGap(190, 190, 190)
-                                                .addComponent(jLabel11)
-                                                .addGap(139, 139, 139))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addContainerGap(74, Short.MAX_VALUE))
+                                .addComponent(btnOrdenAscendente)
+                                .addGap(51, 51, 51))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(435, 435, 435)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtnPar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbtnRojos))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtnImpar)
-                            .addComponent(rbtnNegros))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn1Docena)
-                            .addComponent(rbtnFila3))
-                        .addGap(11, 11, 11)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn2Docena)
-                            .addComponent(rbtnFila2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtn3Docena)
-                            .addComponent(rbtnFila1))
-                        .addContainerGap(132, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -573,12 +603,15 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -649,9 +682,9 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
 
         JOptionPane.showMessageDialog(this, "Número: " + numero + "\nColor: " + color);
 
-        double apuesta = 0.0;
+        int apuesta = 0;
         try {
-            apuesta = Double.parseDouble(txtApuesta.getText());
+            apuesta = Integer.parseInt(txtApuesta.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Apuesta no válida. Se registrará como 0.");
         }
@@ -666,6 +699,10 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
             listaNegros.mostrar(modeloNegros);
         }
     }//GEN-LAST:event_btnJugarMouseClicked
+
+    private void btnOrdenParidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenParidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOrdenParidadActionPerformed
 
     private void centrarInternalFrame(JInternalFrame interna) {
         int x = panelPrincipal.getWidth() / 2 - interna.getWidth() / 2;
@@ -698,12 +735,13 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn5;
     private javax.swing.JButton btn50;
     private javax.swing.JButton btnApostar;
+    private javax.swing.ButtonGroup btnGroupRbtn;
     private javax.swing.ButtonGroup btnGrupo;
     private javax.swing.JButton btnJugar;
+    private javax.swing.JButton btnOrdenAscendente;
+    private javax.swing.JButton btnOrdenParidad;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel17;
@@ -729,12 +767,13 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton rbtn1Docena;
     private javax.swing.JRadioButton rbtn2Docena;
     private javax.swing.JRadioButton rbtn3Docena;
-    private javax.swing.JRadioButton rbtnFila1;
-    private javax.swing.JRadioButton rbtnFila2;
-    private javax.swing.JRadioButton rbtnFila3;
+    private javax.swing.JRadioButton rbtnColumna1;
+    private javax.swing.JRadioButton rbtnColumna2;
+    private javax.swing.JRadioButton rbtnColumna3;
     private javax.swing.JRadioButton rbtnImpar;
     private javax.swing.JRadioButton rbtnNegros;
     private javax.swing.JRadioButton rbtnPar;
+    private javax.swing.JRadioButton rbtnPleno;
     private javax.swing.JRadioButton rbtnRojos;
     private javax.swing.JTable tableNegros;
     private javax.swing.JTable tableRojos;
