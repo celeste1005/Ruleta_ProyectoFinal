@@ -201,7 +201,7 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Número");
 
-        txtNumero.setEditable(false);
+        txtNumero.setEnabled(false);
         txtNumero.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroKeyTyped(evt);
@@ -238,42 +238,92 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         rbtnPar.setForeground(new java.awt.Color(255, 255, 255));
         rbtnPar.setText("Par");
         rbtnPar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        rbtnPar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnParActionPerformed(evt);
+            }
+        });
 
         btnGroupRbtn.add(rbtnImpar);
         rbtnImpar.setForeground(new java.awt.Color(255, 255, 255));
         rbtnImpar.setText("Impar");
+        rbtnImpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnImparActionPerformed(evt);
+            }
+        });
 
         btnGroupRbtn.add(rbtn1Docena);
         rbtn1Docena.setForeground(new java.awt.Color(255, 255, 255));
         rbtn1Docena.setText("1ra Docena");
+        rbtn1Docena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn1DocenaActionPerformed(evt);
+            }
+        });
 
         btnGroupRbtn.add(rbtn2Docena);
         rbtn2Docena.setForeground(new java.awt.Color(255, 255, 255));
         rbtn2Docena.setText("2da Docena");
+        rbtn2Docena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn2DocenaActionPerformed(evt);
+            }
+        });
 
         btnGroupRbtn.add(rbtn3Docena);
         rbtn3Docena.setForeground(new java.awt.Color(255, 255, 255));
         rbtn3Docena.setText("3ra Docena");
+        rbtn3Docena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtn3DocenaActionPerformed(evt);
+            }
+        });
 
         btnGroupRbtn.add(rbtnRojos);
         rbtnRojos.setForeground(new java.awt.Color(255, 255, 255));
         rbtnRojos.setText("Rojos");
+        rbtnRojos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnRojosActionPerformed(evt);
+            }
+        });
 
         btnGroupRbtn.add(rbtnNegros);
         rbtnNegros.setForeground(new java.awt.Color(255, 255, 255));
         rbtnNegros.setText("Negros");
+        rbtnNegros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnNegrosActionPerformed(evt);
+            }
+        });
 
         btnGroupRbtn.add(rbtnColumna3);
         rbtnColumna3.setForeground(new java.awt.Color(255, 255, 255));
         rbtnColumna3.setText("Columna 3-36");
+        rbtnColumna3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnColumna3ActionPerformed(evt);
+            }
+        });
 
         btnGroupRbtn.add(rbtnColumna2);
         rbtnColumna2.setForeground(new java.awt.Color(255, 255, 255));
         rbtnColumna2.setText("Columna 2-35");
+        rbtnColumna2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnColumna2ActionPerformed(evt);
+            }
+        });
 
         btnGroupRbtn.add(rbtnColumna1);
         rbtnColumna1.setForeground(new java.awt.Color(255, 255, 255));
         rbtnColumna1.setText("Columna 1-34");
+        rbtnColumna1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnColumna1ActionPerformed(evt);
+            }
+        });
 
         btnOrdenAscendente.setText("Ordenar Ascendente");
 
@@ -424,6 +474,11 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
         btnGroupRbtn.add(rbtnPleno);
         rbtnPleno.setForeground(new java.awt.Color(255, 255, 255));
         rbtnPleno.setText("Pleno");
+        rbtnPleno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnPlenoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -673,6 +728,11 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
         IFrmTemporizador tab = new IFrmTemporizador();
         centrarInternalFrameTemp(tab);
+        if (btnGroupRbtn.getSelection() == null) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona un tipo de apuesta.");
+            return;
+        }
+
     }//GEN-LAST:event_btnJugarActionPerformed
 
     private void btnJugarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnJugarMouseClicked
@@ -703,6 +763,50 @@ public class IFrmJuegoRuleta extends javax.swing.JInternalFrame {
     private void btnOrdenParidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenParidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOrdenParidadActionPerformed
+
+    private void rbtnPlenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnPlenoActionPerformed
+        txtNumero.setEnabled(true);
+    }//GEN-LAST:event_rbtnPlenoActionPerformed
+
+    private void rbtnParActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnParActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtnParActionPerformed
+
+    private void rbtnImparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnImparActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtnImparActionPerformed
+
+    private void rbtn1DocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn1DocenaActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtn1DocenaActionPerformed
+
+    private void rbtn2DocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn2DocenaActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtn2DocenaActionPerformed
+
+    private void rbtn3DocenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtn3DocenaActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtn3DocenaActionPerformed
+
+    private void rbtnNegrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnNegrosActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtnNegrosActionPerformed
+
+    private void rbtnRojosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnRojosActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtnRojosActionPerformed
+
+    private void rbtnColumna1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnColumna1ActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtnColumna1ActionPerformed
+
+    private void rbtnColumna2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnColumna2ActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtnColumna2ActionPerformed
+
+    private void rbtnColumna3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnColumna3ActionPerformed
+        txtNumero.setEnabled(false);
+    }//GEN-LAST:event_rbtnColumna3ActionPerformed
 
     private void centrarInternalFrame(JInternalFrame interna) {
         int x = panelPrincipal.getWidth() / 2 - interna.getWidth() / 2;
